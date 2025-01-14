@@ -1,0 +1,128 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
+| Date         : Tue Jan 14 01:50:39 2025
+| Host         : DESKTOP-RS05GR8 running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file game_top_control_sets_placed.rpt
+| Design       : game_top
+| Device       : xc7a100t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    50 |
+|    Minimum number of control sets                        |    50 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |   218 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    50 |
+| >= 0 to < 4        |     3 |
+| >= 4 to < 6        |     2 |
+| >= 6 to < 8        |     9 |
+| >= 8 to < 10       |     2 |
+| >= 10 to < 12      |    21 |
+| >= 12 to < 14      |     8 |
+| >= 14 to < 16      |     0 |
+| >= 16              |     5 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              58 |           26 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |             133 |           50 |
+| Yes          | No                    | No                     |             228 |           87 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             331 |          126 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++------------------------+-------------------------------------------+-------------------------------------+------------------+----------------+--------------+
+|      Clock Signal      |               Enable Signal               |           Set/Reset Signal          | Slice Load Count | Bel Load Count | Bels / Slice |
++------------------------+-------------------------------------------+-------------------------------------+------------------+----------------+--------------+
+|  clk_IBUF              |                                           |                                     |                1 |              1 |         1.00 |
+|  inst/inst/clk_out1    | head_inst/state_reg_4[0]                  | vga_i/state_reg[0]                  |                1 |              2 |         2.00 |
+|  inst/inst/clk_out1    | vga_i/line_end                            | vga_i/curr_y_r                      |                2 |              2 |         1.00 |
+|  inst/inst/clk_out1    | head_inst/state_reg_4[0]                  |                                     |                1 |              4 |         4.00 |
+|  game_clk_reg_n_0_BUFG |                                           |                                     |                3 |              4 |         1.33 |
+|  inst/inst/clk_out1    | head_inst/bul_r185_out                    | vga_i/state_reg_5[0]                |                1 |              6 |         6.00 |
+|  inst/inst/clk_out1    | head_inst/E[0]                            | head_inst/state_reg_5[0]            |                1 |              6 |         6.00 |
+|  inst/inst/clk_out1    | head_inst/hBullet_active_reg[1]_3[0]      | vga_i/state_reg_3[0]                |                2 |              6 |         3.00 |
+|  inst/inst/clk_out1    | head_inst/hBullet_active_reg[0]_0[0]      | vga_i/state_reg_2[0]                |                1 |              6 |         6.00 |
+|  inst/inst/clk_out1    | head_inst/hBullet_active_reg[2]_1[0]      | vga_i/state_reg_4[0]                |                1 |              6 |         6.00 |
+|  inst/inst/clk_out1    | head_inst/state_reg[0]                    | top_inst/tBullet_active_reg[1]_0[0] |                1 |              6 |         6.00 |
+|  inst/inst/clk_out1    | top_inst/tBullet_active_reg[1]_2[0]       | head_inst/state_reg_0[0]            |                3 |              6 |         2.00 |
+|  inst/inst/clk_out1    | top_inst/state_reg[0]                     | head_inst/state_reg_1[0]            |                1 |              6 |         6.00 |
+|  inst/inst/clk_out1    | top_inst/state_reg_0[0]                   | head_inst/state_reg_2[0]            |                2 |              6 |         3.00 |
+|  game_clk_reg_n_0_BUFG | blkpos_x[10]_i_1_n_0                      | btn_IBUF[2]                         |                3 |              9 |         3.00 |
+|  inst/inst/clk_out1    | vga_i/line_end                            |                                     |                4 |              9 |         2.25 |
+|  game_clk_reg_n_0_BUFG | top_inst/bulpos_x_array[1][10]_i_1__0_n_0 | head_inst/SR[0]                     |                6 |             10 |         1.67 |
+|  game_clk_reg_n_0_BUFG | top_inst/bulpos_x_array[3][10]_i_1__0_n_0 | head_inst/SR[0]                     |                3 |             10 |         3.33 |
+|  game_clk_reg_n_0_BUFG | top_inst/bulpos_x_array[4][10]_i_1__0_n_0 | head_inst/SR[0]                     |                3 |             10 |         3.33 |
+|  game_clk_reg_n_0_BUFG | top_inst/bulpos_x_array[0][10]_i_1__0_n_0 | head_inst/SR[0]                     |                4 |             10 |         2.50 |
+|  inst/inst/clk_out1    | vga_i/line_end                            | vga_i/vcount[9]_i_1_n_0             |                4 |             10 |         2.50 |
+|  game_clk_reg_n_0_BUFG | top_inst/bulpos_x_array[2][10]_i_1__0_n_0 | head_inst/SR[0]                     |                4 |             10 |         2.50 |
+|  game_clk_reg_n_0_BUFG | jump_inst/ns__0                           | head_inst/SR[0]                     |                6 |             11 |         1.83 |
+|  inst/inst/clk_out1    |                                           | vga_i/hcount[10]_i_1_n_0            |                4 |             11 |         2.75 |
+|  inst/inst/clk_out1    |                                           | vga_i/curr_x_r[10]_i_1_n_0          |                5 |             11 |         2.20 |
+|  game_clk_reg_n_0_BUFG |                                           | btn_IBUF[2]                         |                4 |             11 |         2.75 |
+|  game_clk_reg_n_0_BUFG | head_inst/bulpos_x_array[0][10]_i_1_n_0   | head_inst/SR[0]                     |                5 |             11 |         2.20 |
+|  game_clk_reg_n_0_BUFG | head_inst/bulpos_x_array[1][10]_i_1_n_0   | head_inst/SR[0]                     |                4 |             11 |         2.75 |
+|  game_clk_reg_n_0_BUFG | head_inst/bulpos_x_array[4][10]_i_1_n_0   | head_inst/SR[0]                     |                5 |             11 |         2.20 |
+|  game_clk_reg_n_0_BUFG | head_inst/bulpos_x_array[3][10]_i_1_n_0   | head_inst/SR[0]                     |                4 |             11 |         2.75 |
+|  game_clk_reg_n_0_BUFG | head_inst/bulpos_x_array[2][10]_i_1_n_0   | head_inst/SR[0]                     |                6 |             11 |         1.83 |
+|  game_clk_reg_n_0_BUFG | head_inst/prev_button_state_reg_0[0]      | head_inst/SR[0]                     |                5 |             11 |         2.20 |
+|  game_clk_reg_n_0_BUFG | top_inst/bulpos_y_array[2][10]_i_1__0_n_0 | head_inst/SR[0]                     |                5 |             11 |         2.20 |
+|  game_clk_reg_n_0_BUFG | top_inst/bulpos_y_array[1][10]_i_1__0_n_0 | head_inst/SR[0]                     |                4 |             11 |         2.75 |
+|  game_clk_reg_n_0_BUFG | top_inst/bulpos_y_array[3][10]_i_1__0_n_0 | head_inst/SR[0]                     |                5 |             11 |         2.20 |
+|  game_clk_reg_n_0_BUFG | top_inst/bulpos_y_array[4][10]_i_1__0_n_0 | head_inst/SR[0]                     |                4 |             11 |         2.75 |
+|  game_clk_reg_n_0_BUFG | jump_inst/pos_y[10]_i_1_n_0               | head_inst/SR[0]                     |                5 |             11 |         2.20 |
+|  inst/inst/clk_out1    | vga_i/blk_r_reg[3]_i_2_0                  | vga_i/state_reg_1                   |                3 |             12 |         4.00 |
+|  inst/inst/clk_out1    |                                           | vga_i/state_reg_0[0]                |                4 |             12 |         3.00 |
+|  game_clk_reg_n_0_BUFG | head_inst/hBullet_active[3]_i_1_n_0       | head_inst/SR[0]                     |                4 |             12 |         3.00 |
+|  game_clk_reg_n_0_BUFG | head_inst/hBullet_active[0]_i_1_n_0       | head_inst/SR[0]                     |                4 |             12 |         3.00 |
+|  game_clk_reg_n_0_BUFG | head_inst/hBullet_active[1]_i_1_n_0       | head_inst/SR[0]                     |                4 |             12 |         3.00 |
+|  game_clk_reg_n_0_BUFG | head_inst/hBullet_active[2]_i_1_n_0       | head_inst/SR[0]                     |                8 |             12 |         1.50 |
+|  inst/inst/clk_out1    |                                           | bg_inst/SR[0]                       |                8 |             12 |         1.50 |
+|  game_clk_reg_n_0_BUFG | head_inst/hBullet_active[4]_i_1_n_0       | head_inst/SR[0]                     |                2 |             12 |         6.00 |
+|  clk_IBUF              |                                           | clk_div[0]_i_1_n_0                  |                6 |             21 |         3.50 |
+|  game_clk_reg_n_0_BUFG |                                           | head_inst/SR[0]                     |                8 |             26 |         3.25 |
+|  inst/inst/clk_out1    |                                           | head_inst/SR[0]                     |               11 |             29 |         2.64 |
+|  inst/inst/clk_out1    |                                           |                                     |               22 |             53 |         2.41 |
+|  game_clk_reg_n_0_BUFG | rst_IBUF                                  |                                     |               82 |            215 |         2.62 |
++------------------------+-------------------------------------------+-------------------------------------+------------------+----------------+--------------+
+
+

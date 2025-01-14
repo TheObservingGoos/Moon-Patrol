@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Mon Jan 13 07:13:01 2025
+# Process ID: 25652
+# Current directory: D:/SOMUCHSPACE/Works/CW/CW.runs/game_screen_synth_1
+# Command line: vivado.exe -log game_screen.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source game_screen.tcl
+# Log file: D:/SOMUCHSPACE/Works/CW/CW.runs/game_screen_synth_1/game_screen.vds
+# Journal file: D:/SOMUCHSPACE/Works/CW/CW.runs/game_screen_synth_1\vivado.jou
+# Running On        :DESKTOP-RS05GR8
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :19045
+# Processor Detail  :AMD Ryzen 7 4800H with Radeon Graphics         
+# CPU Frequency     :2895 MHz
+# CPU Physical cores:8
+# CPU Logical cores :16
+# Host memory       :16556 MB
+# Swap memory       :27693 MB
+# Total Virtual     :44250 MB
+# Available Virtual :8721 MB
+#-----------------------------------------------------------
+source game_screen.tcl -notrace

@@ -1,0 +1,7 @@
+verilog xil_defaultlib  \
+"../../../../CW.gen/sources_1/ip/Top_Bullet3/sim/Top_Bullet3.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

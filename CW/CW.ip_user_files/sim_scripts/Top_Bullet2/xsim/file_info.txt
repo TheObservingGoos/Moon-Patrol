@@ -1,0 +1,2 @@
+Top_Bullet2.v,verilog,xil_defaultlib,../../../../CW.gen/sources_1/ip/Top_Bullet2/sim/Top_Bullet2.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

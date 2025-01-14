@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="title_screen_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1736745016">
+  <File Type="PA-TCL" Name="title_screen.tcl"/>
+  <File Type="REPORTS-TCL" Name="title_screen_reports.tcl"/>
+  <File Type="RDS-RDS" Name="title_screen.vds"/>
+  <File Type="RDS-UTIL" Name="title_screen_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="title_screen_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="title_screen.dcp"/>
+  <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/title_screen" RelGenDir="$PGENDIR/title_screen">
+    <File Path="$PSRCDIR/sources_1/ip/title_screen/title_screen.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="title_screen"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="BlockSrcs" RelSrcDir="$PSRCDIR/title_screen" RelGenDir="$PGENDIR/title_screen">
+    <File Path="$PSRCDIR/sources_1/ip/title_screen/title_screen.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="title_screen"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
+    <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/vga_out.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+    <Step Id="synth_design"/>
+  </Strategy>
+</GenRun>

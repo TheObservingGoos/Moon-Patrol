@@ -1,0 +1,2 @@
+Head_Bullet.v,verilog,xil_defaultlib,../../../../CW.gen/sources_1/ip/Head_Bullet/sim/Head_Bullet.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v
