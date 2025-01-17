@@ -83,8 +83,13 @@ add_files D:/Vivado/Titli/slice_0_0.coe
 add_files D:/Vivado/TP256.coe
 add_files D:/Vivado/mainTitle.coe
 add_files D:/Vivado/mainGame.coe
-add_files d:/Vivado/bullet2.coe
+add_files D:/Vivado/bullet2.coe
+add_files D:/Vivado/MainCar.coe
+add_files D:/Vivado/TITLE/mainGame.coe
+add_files D:/Vivado/TITLE/mainTitle.coe
+add_files D:/Vivado/BAR/Bar1.coe
 read_verilog -library xil_defaultlib {
+  D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/new/Level_FSM.v
   D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/new/Vert_Movement.v
   D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/new/drawcon.v
   D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/new/hBulletConfig.v
@@ -93,13 +98,16 @@ read_verilog -library xil_defaultlib {
   D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/new/vga_out.v
   D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/new/game_top.v
 }
-read_ip -quiet d:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Top_Bullet4/Top_Bullet4.xci
+read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Top_Bullet5/Top_Bullet5.xci
+set_property used_in_implementation false [get_files -all d:/SOMUCHSPACE/Works/CW/CW.gen/sources_1/ip/Top_Bullet5/Top_Bullet5_ooc.xdc]
+
+read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Top_Bullet4/Top_Bullet4.xci
 set_property used_in_implementation false [get_files -all d:/SOMUCHSPACE/Works/CW/CW.gen/sources_1/ip/Top_Bullet4/Top_Bullet4_ooc.xdc]
 
-read_ip -quiet d:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Top_Bullet3/Top_Bullet3.xci
+read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Top_Bullet3/Top_Bullet3.xci
 set_property used_in_implementation false [get_files -all d:/SOMUCHSPACE/Works/CW/CW.gen/sources_1/ip/Top_Bullet3/Top_Bullet3_ooc.xdc]
 
-read_ip -quiet d:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Top_Bullet2/Top_Bullet2.xci
+read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Top_Bullet2/Top_Bullet2.xci
 set_property used_in_implementation false [get_files -all d:/SOMUCHSPACE/Works/CW/CW.gen/sources_1/ip/Top_Bullet2/Top_Bullet2_ooc.xdc]
 
 read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Head_Bullet3/Head_Bullet3.xci
@@ -131,8 +139,11 @@ set_property used_in_implementation false [get_files -all d:/SOMUCHSPACE/Works/C
 read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/game_screen/game_screen.xci
 set_property used_in_implementation false [get_files -all d:/SOMUCHSPACE/Works/CW/CW.gen/sources_1/ip/game_screen/game_screen_ooc.xdc]
 
-read_ip -quiet d:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Top_Bullet/Top_Bullet.xci
+read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Top_Bullet/Top_Bullet.xci
 set_property used_in_implementation false [get_files -all d:/SOMUCHSPACE/Works/CW/CW.gen/sources_1/ip/Top_Bullet/Top_Bullet_ooc.xdc]
+
+read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Bar1/Bar1.xci
+set_property used_in_implementation false [get_files -all d:/SOMUCHSPACE/Works/CW/CW.gen/sources_1/ip/Bar1/Bar1_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

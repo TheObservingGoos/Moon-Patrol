@@ -3,6 +3,9 @@
 
 # XDC: D:/SOMUCHSPACE/Works/Lab 3/Lab 3.srcs/constrs_1/imports/Vivado/Nexys-4-DDR-Master.xdc
 
+# IP: ip/Top_Bullet5/Top_Bullet5.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Top_Bullet5 || ORIG_REF_NAME==Top_Bullet5} -quiet] -quiet
+
 # IP: ip/Top_Bullet4/Top_Bullet4.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Top_Bullet4 || ORIG_REF_NAME==Top_Bullet4} -quiet] -quiet
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1736819303" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/vga_out.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1737033949" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/vga_out.dcp">
   <File Type="PA-TCL" Name="game_top.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="game_top_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="game_top_reports.tcl"/>
@@ -11,6 +11,13 @@
   <File Type="VDS-TIMING-PB" Name="game_top_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/ip/Top_Bullet5/Top_Bullet5.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/ip/Top_Bullet4/Top_Bullet4.xci">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -47,6 +54,13 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/ip/Head_Bullet/Head_Bullet.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/Level_FSM.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -170,11 +184,27 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/ip/Top_Bullet5/Top_Bullet5.xci">
+    <File Path="$PPRDIR/../../../Vivado/MainCar.coe">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../Vivado/TITLE/mainGame.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../Vivado/TITLE/mainTitle.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../Vivado/BAR/Bar1.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
@@ -221,4 +251,5 @@
   <BlockFileSet Type="BlockSrcs" Name="blk_mem_gen_0"/>
   <BlockFileSet Type="BlockSrcs" Name="title_screen"/>
   <BlockFileSet Type="BlockSrcs" Name="Head_Bullet4"/>
+  <BlockFileSet Type="BlockSrcs" Name="Bar1"/>
 </GenRun>

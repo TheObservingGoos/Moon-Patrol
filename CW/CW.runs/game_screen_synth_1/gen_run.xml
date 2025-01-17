@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="game_screen_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1736752377">
+<GenRun Id="game_screen_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1736975881">
   <File Type="PA-TCL" Name="game_screen.tcl"/>
   <File Type="REPORTS-TCL" Name="game_screen_reports.tcl"/>
   <File Type="RDS-RDS" Name="game_screen.vds"/>

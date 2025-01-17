@@ -27,15 +27,11 @@ module game_top(
     input [2:0] btn,
     input jmp_btn,
     input sht_btn,
+    output [2:0] chkpointLED,
+    output [4:0] spwnLED,
     output [3:0] pix_r,
     output [3:0] pix_g,
     output [3:0] pix_b,
-    output outLED,
-    output outLED2,
-    output [1:0] chkLED,
-    output [4:0] bulLED,
-    output [2:0] stkLED,
-    output sLED,
     output hsync,
     output vsync
     );
@@ -66,9 +62,13 @@ reg game_clk;
 reg [10:0] blkpos_x;
 reg [10:0] blkpos_y;
 
+wire [2:0] levelstate;
+wire [4:0] spawn_count;
 
 // Jump Wires
 wire [10:0] jump_y;
+
+parameter MOVE_SPEED = 10;
     
 clk_wiz_0 inst
 (
@@ -79,7 +79,8 @@ clk_wiz_0 inst
 );
     
  assign bulLED = hBullet_active;
- assign sLED = st;
+ assign chkpointLED = levelstate;
+ assign spwnLED = spawn_count;
  
 // Game Clock Generation 
 always @(posedge clk) begin
@@ -98,20 +99,21 @@ end
 //// Block Movement
 always @(posedge game_clk) begin
     if (btn[2]) begin
-        blkpos_x <= 11'd50;
+        blkpos_x <= 11'd11;
         blkpos_y <= 11'd890-11'd110;
     end else begin
         blkpos_y <= jump_y;
         case(btn[1:0])
             2'b01: begin//left
                 if(blkpos_x > 11'd10) begin
-                   blkpos_x <= blkpos_x - 4;
+                   blkpos_x <= blkpos_x - MOVE_SPEED;
                 end
             end
             2'b10: begin//right
-                if(blkpos_x < (11'd1430-11'd108)) begin
-                   blkpos_x <= blkpos_x + 4;
-                end
+                if(blkpos_x < (11'd1420-11'd107)) begin
+                   blkpos_x <= blkpos_x + MOVE_SPEED;
+                end else
+                    blkpos_x <= 11'd11;
             end
             default: begin
                 blkpos_x <= blkpos_x;
@@ -163,9 +165,7 @@ screen_controller bg_inst(
 Vert_Movement jump_inst (
     .clk(game_clk),
     .rst(rst),
-    .outLED(outLED),
     .jmp_btn(jmp_btn),
-    .s(chkLED),
     .pos_y(jump_y)       // Y-coordinate output from jump logic
 );
 
@@ -177,8 +177,7 @@ hBulletConfig head_inst (
     .carpos_y(blkpos_y),
     .hBullet_active(hBullet_active),
     .bulpos_x(bulOnepos_x),
-    .bulpos_y(bulOnepos_y),
-    .LEDcheck(outLED2)
+    .bulpos_y(bulOnepos_y)
 );
 
 tBulletConfig top_inst (
@@ -190,6 +189,14 @@ tBulletConfig top_inst (
     .tBullet_active(tBullet_active),
     .bulpos_x(bulTwopos_x),
     .bulpos_y(bulTwopos_y)
+);
+
+Level_FSM chkpointFSM (
+    .clk(game_clk),
+    .rst(rst),
+    .x_pos(blkpos_x),
+    .levelstate(levelstate),
+    .spawn_count(spawn_count)
 );
     
 endmodule

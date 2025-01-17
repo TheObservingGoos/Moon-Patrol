@@ -1,0 +1,2 @@
+title_screen.v,verilog,xil_defaultlib,../../../../CW.gen/sources_1/ip/title_screen/sim/title_screen.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

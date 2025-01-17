@@ -27,8 +27,7 @@ module hBulletConfig(
     input [10:0] carpos_y,
     output reg [4:0] hBullet_active,
     output reg [54:0] bulpos_x,  // Flattened 5 x 11-bit array
-    output reg [54:0] bulpos_y,   // Flattened 5 x 11-bit array
-    output LEDcheck
+    output reg [54:0] bulpos_y   // Flattened 5 x 11-bit array
     );
 
     parameter BUL1_SIZE_X = 8, BUL1_SIZE_Y = 6;
@@ -40,7 +39,7 @@ module hBulletConfig(
     integer i;
     
     reg prev_button_state;  // Register to store the previous state of the button
-    assign LEDcheck = (shoot_button == 1'b1 && prev_button_state == 1'b0);
+    wire LEDcheck = (shoot_button == 1'b1 && prev_button_state == 1'b0);
 
     // Internal arrays for bullet positions
     reg [10:0] bulpos_x_array [4:0];

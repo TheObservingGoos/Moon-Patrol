@@ -76,7 +76,7 @@ set_property ip_output_repo d:/SOMUCHSPACE/Works/CW/CW.cache/ip [current_project
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_ip -quiet d:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/title_screen/title_screen.xci
+read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/title_screen/title_screen.xci
 set_property used_in_implementation false [get_files -all d:/SOMUCHSPACE/Works/CW/CW.gen/sources_1/ip/title_screen/title_screen_ooc.xdc]
 
 OPTRACE "Adding files" END { }

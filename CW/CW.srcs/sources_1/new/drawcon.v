@@ -33,9 +33,7 @@ module drawcon(
     input [54:0] temp2_x,
     input [54:0] temp2_y,
     input bg_state,
-    output [3:0] draw_r,
-    output [3:0] draw_g,
-    output [3:0] draw_b    
+    output reg [3:0] draw_r, draw_g, draw_b
     );
 
 parameter SCALE_X = 1440 / 360; // Horizontal scale factor
@@ -48,6 +46,16 @@ reg [3:0] bg_r, bg_g, bg_b;
 
 reg [16:0] bg_addr;
 reg [11:0] chosen_rom;
+
+parameter BAR_SIZE_X = 752, BAR_SIZE_Y = 56;
+parameter BAR_POS_X = 528, BAR_POS_Y = 128;
+wire [9:0] bar_rel_x = (curr_x - BAR_POS_X) / SCALE_X;
+wire [9:0] bar_rel_y = (curr_y - BAR_POS_Y) / SCALE_Y;
+wire [11:0] bar_one_rom;
+reg [11:0] bar_addr;
+reg [11:0] chosen_bar_rom;
+
+reg [11:0] bar_colour;
 
 reg [3:0] whl_r, whl_g, whl_b;
 
@@ -78,10 +86,10 @@ reg [5:0] bul23_addr;
 reg [5:0] bul24_addr;
 reg [5:0] bul25_addr;
 
-reg [3:0] bul_r, bul_g, bul_b;
+reg [11:0] bul_colour;
 
-parameter BLK_SIZE_X = 108, BLK_SIZE_Y = 36;
-reg [3:0] blk_r, blk_g, blk_b;
+parameter BLK_SIZE_X = 107, BLK_SIZE_Y = 36;
+reg [11:0] blk_colour;
 reg [13:0] car_addr;
 wire [11:0] rom_pixel;
 
@@ -122,11 +130,27 @@ always @(posedge clk) begin
         bg_g <= 4'b0000;
         bg_b <= 4'b0000;
         bg_addr <= 0;
+        bar_addr <= 0;
     end else begin
         bg_r <= chosen_rom[11:8];
         bg_g <= chosen_rom[7:4];
         bg_b <= chosen_rom[3:0];
-        bg_addr <= (rel_y * 360) + rel_x;
+        bg_addr <= (rel_y * 360) + rel_x + 1; 
+    end
+end
+
+always @(posedge clk) begin
+    if (!rst) begin
+        bar_colour <= 12'h000;
+        bar_addr <= 0;
+    end else begin
+        if ((curr_x < BAR_POS_X) || (curr_x > BAR_POS_X+BAR_SIZE_X-1) ||
+            (curr_y < BAR_POS_Y) || (curr_y > BAR_POS_Y+BAR_SIZE_Y-1)) begin
+            bar_colour <= 12'h000;
+        end else begin
+            bar_colour <= rom_pixel;
+            bg_addr <= (bar_rel_y * 360) + bar_rel_x + 1; 
+        end
     end
 end
 
@@ -142,22 +166,16 @@ end
 // Car Body Block
 always @(posedge clk) begin
     if (!rst || !bg_state) begin
-        blk_r <= 4'b0000;
-        blk_g <= 4'b0000;
-        blk_b <= 4'b0000;
-        car_addr <= 0;
+        blk_colour <= 12'h000;
+        bar_addr <= 0;
     end else begin
         if ((curr_x < blkpos_x) || (curr_x > blkpos_x+BLK_SIZE_X-1) ||
             (curr_y < blkpos_y) || (curr_y > blkpos_y+BLK_SIZE_Y-1)) begin
-            blk_r <= 4'b0000;
-            blk_g <= 4'b0000;
-            blk_b <= 4'b0000;
+            blk_colour <= 12'h000;
         end else begin
-            blk_r <= rom_pixel[11:8];
-            blk_g <= rom_pixel[7:4];
-            blk_b <= rom_pixel[3:0];
+            blk_colour <= rom_pixel;
             if ((curr_x == blkpos_x) && (curr_y == blkpos_y))
-                car_addr <= 0;
+                car_addr <= -4;
             else
                 car_addr <= car_addr + 1;
         end
@@ -167,9 +185,7 @@ end
 // Car Head Bullets Block
 always @(posedge clk) begin
     if (!rst || !bg_state) begin
-        bul_r <= 4'b0000;
-        bul_g <= 4'b0000;
-        bul_b <= 4'b0000;
+        bul_colour <= 12'h000;
         bul11_addr <= 0;
         bul12_addr <= 0;
         bul13_addr <= 0;
@@ -178,112 +194,90 @@ always @(posedge clk) begin
     end else begin
         if ((curr_x > hbulpos_x_array[0]) && (curr_x < hbulpos_x_array[0]+BUL1_SIZE_X-1) &&
             (curr_y > hbulpos_y_array[0]) && (curr_y < hbulpos_y_array[0]+BUL1_SIZE_Y-1) && hBullet_active[0]) begin
-            bul_r <= bul11_rom_pixel[11:8];
-            bul_g <= bul11_rom_pixel[7:4];
-            bul_b <= bul11_rom_pixel[3:0];
+            bul_colour <= bul11_rom_pixel;
             if ((curr_x == hbulpos_x_array[0]) && (curr_y == hbulpos_y_array[0]))
                 bul11_addr <= 0;
             else
                 bul11_addr <= bul11_addr + 1;
         end else if ((curr_x > hbulpos_x_array[1]) && (curr_x < hbulpos_x_array[1]+BUL1_SIZE_X-1) &&
             (curr_y > hbulpos_y_array[1]) && (curr_y < hbulpos_y_array[1]+BUL1_SIZE_Y-1) && hBullet_active[1]) begin
-            bul_r <= bul12_rom_pixel[11:8];
-            bul_g <= bul12_rom_pixel[7:4];
-            bul_b <= bul12_rom_pixel[3:0];
+            bul_colour <= bul12_rom_pixel;
             if ((curr_x == hbulpos_x_array[1]) && (curr_y == hbulpos_y_array[1]))
                 bul12_addr <= 0;
             else
                 bul12_addr <= bul12_addr + 1;
         end else if ((curr_x > hbulpos_x_array[2]) && (curr_x < hbulpos_x_array[2]+BUL1_SIZE_X-1) &&
             (curr_y > hbulpos_y_array[2]) && (curr_y < hbulpos_y_array[2]+BUL1_SIZE_Y-1) && hBullet_active[2]) begin
-            bul_r <= bul13_rom_pixel[11:8];
-            bul_g <= bul13_rom_pixel[7:4];
-            bul_b <= bul13_rom_pixel[3:0];
+            bul_colour <= bul13_rom_pixel;
             if ((curr_x == hbulpos_x_array[2]) && (curr_y == hbulpos_y_array[2]))
                 bul13_addr <= 0;
             else
                 bul13_addr <= bul13_addr + 1;
         end else if ((curr_x > hbulpos_x_array[3]) && (curr_x < hbulpos_x_array[3]+BUL1_SIZE_X-1) &&
             (curr_y > hbulpos_y_array[3]) && (curr_y < hbulpos_y_array[3]+BUL1_SIZE_Y-1) && hBullet_active[3]) begin
-            bul_r <= bul14_rom_pixel[11:8];
-            bul_g <= bul14_rom_pixel[7:4];
-            bul_b <= bul14_rom_pixel[3:0];
+            bul_colour <= bul14_rom_pixel;
             if ((curr_x == hbulpos_x_array[3]) && (curr_y == hbulpos_y_array[3]))
                 bul14_addr <= 0;
             else
                 bul14_addr <= bul14_addr + 1;
         end else if ((curr_x > hbulpos_x_array[4]) && (curr_x < hbulpos_x_array[4]+BUL1_SIZE_X-1) &&
             (curr_y > hbulpos_y_array[4]) && (curr_y < hbulpos_y_array[4]+BUL1_SIZE_Y-1) && hBullet_active[4]) begin
-            bul_r <= bul15_rom_pixel[11:8];
-            bul_g <= bul15_rom_pixel[7:4];
-            bul_b <= bul15_rom_pixel[3:0];
+            bul_colour <= bul15_rom_pixel;
             if ((curr_x == hbulpos_x_array[4]) && (curr_y == hbulpos_y_array[4]))
                 bul15_addr <= 0;
             else
                 bul15_addr <= bul15_addr + 1;
         end else if ((curr_x > tbulpos_x_array[0]) && (curr_x < tbulpos_x_array[0]+BUL2_SIZE_X-1) &&
             (curr_y > tbulpos_y_array[0]) && (curr_y < tbulpos_y_array[0]+BUL2_SIZE_Y-1) && tBullet_active[0]) begin
-            bul_r <= bul21_rom_pixel[11:8];
-            bul_g <= bul21_rom_pixel[7:4];
-            bul_b <= bul21_rom_pixel[3:0];
+            bul_colour <= bul21_rom_pixel;
             if ((curr_x == tbulpos_x_array[0]) && (curr_y == tbulpos_y_array[0]))
                 bul21_addr <= 0;
             else
                 bul21_addr <= bul21_addr + 1;
         end else if ((curr_x > tbulpos_x_array[1]) && (curr_x < tbulpos_x_array[1]+BUL2_SIZE_X-1) &&
             (curr_y > tbulpos_y_array[1]) && (curr_y < tbulpos_y_array[1]+BUL2_SIZE_Y-1) && tBullet_active[1]) begin
-            bul_r <= bul22_rom_pixel[11:8];
-            bul_g <= bul22_rom_pixel[7:4];
-            bul_b <= bul22_rom_pixel[3:0];
+            bul_colour <= bul22_rom_pixel;
             if ((curr_x == tbulpos_x_array[1]) && (curr_y == tbulpos_y_array[1]))
                 bul22_addr <= 0;
             else
                 bul22_addr <= bul22_addr + 1;
         end else if ((curr_x > tbulpos_x_array[2]) && (curr_x < tbulpos_x_array[2]+BUL2_SIZE_X-1) &&
             (curr_y > tbulpos_y_array[2]) && (curr_y < tbulpos_y_array[2]+BUL2_SIZE_Y-1) && tBullet_active[2]) begin
-            bul_r <= bul23_rom_pixel[11:8];
-            bul_g <= bul23_rom_pixel[7:4];
-            bul_b <= bul23_rom_pixel[3:0];
+            bul_colour <= bul23_rom_pixel;
             if ((curr_x == tbulpos_x_array[2]) && (curr_y == tbulpos_y_array[2]))
                 bul23_addr <= 0;
             else
                 bul23_addr <= bul23_addr + 1;
         end else if ((curr_x > tbulpos_x_array[3]) && (curr_x < tbulpos_x_array[3]+BUL2_SIZE_X-1) &&
             (curr_y > tbulpos_y_array[3]) && (curr_y < tbulpos_y_array[3]+BUL2_SIZE_Y-1) && tBullet_active[3]) begin
-            bul_r <= bul24_rom_pixel[11:8];
-            bul_g <= bul24_rom_pixel[7:4];
-            bul_b <= bul24_rom_pixel[3:0];
+            bul_colour <= bul24_rom_pixel;
             if ((curr_x == tbulpos_x_array[3]) && (curr_y == tbulpos_y_array[3]))
                 bul24_addr <= 0;
             else
                 bul24_addr <= bul24_addr + 1;
         end else if ((curr_x > tbulpos_x_array[4]) && (curr_x < tbulpos_x_array[4]+BUL2_SIZE_X-1) &&
             (curr_y > tbulpos_y_array[4]) && (curr_y < tbulpos_y_array[4]+BUL2_SIZE_Y-1) && tBullet_active[4]) begin
-            bul_r <= bul25_rom_pixel[11:8];
-            bul_g <= bul25_rom_pixel[7:4];
-            bul_b <= bul25_rom_pixel[3:0];
+            bul_colour <= bul25_rom_pixel;
             if ((curr_x == tbulpos_x_array[4]) && (curr_y == tbulpos_y_array[4]))
                 bul25_addr <= 0;
             else
                 bul25_addr <= bul25_addr + 1;
         end else begin
-            bul_r <= 4'b0000;
-            bul_g <= 4'b0000;
-            bul_b <= 4'b0000;
+            bul_colour <= 12'h000;
         end
     end
 end
 
-
-
-assign draw_r = (blk_r != 4'b0000) ? blk_r : 
-                ((bul_r != 4'b0000) ? bul_r : bg_r);
-
-assign draw_g = (blk_g != 4'b0000) ? blk_g : 
-                ((bul_g != 4'b0000) ? bul_g : bg_g);
-
-assign draw_b = (blk_b != 4'b0000) ? blk_b : 
-                ((bul_b != 4'b0000) ? bul_b : bg_b);
+always @(posedge clk) begin
+    if (blk_colour != 12'h000)
+        {draw_r, draw_g, draw_b} <= blk_colour;
+    else if (bul_colour != 12'h000)
+        {draw_r, draw_g, draw_b} <= bul_colour;
+    else if (bar_colour != 12'h000)
+        {draw_r, draw_g, draw_b} <= bar_colour;
+    else
+        {draw_r, draw_g, draw_b} <= {bg_r, bg_g, bg_b};
+end
 
 // Instantiation
 blk_mem_gen_0 car (
@@ -346,7 +340,7 @@ Top_Bullet4 tBulletFour (
   .douta(bul24_rom_pixel)  // output wire [11 : 0] douta
 );
 
-Top_Bullet tBulletFive (
+Top_Bullet5 tBulletFive (
   .clka(clk),    // input wire clka
   .addra(bul25_addr),  // input wire [5 : 0] addra
   .douta(bul25_rom_pixel)  // output wire [11 : 0] douta
@@ -364,5 +358,10 @@ game_screen g_screen (
   .douta(bg2_rom_pixel)  // output wire [11 : 0] douta
 );
 
+Bar1 prog_bar_one (
+  .clka(clk),    // input wire clka
+  .addra(bar_addr),  // input wire [11 : 0] addra
+  .douta(bar_one_rom)  // output wire [11 : 0] douta
+);
 
 endmodule

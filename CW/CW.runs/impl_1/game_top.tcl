@@ -121,9 +121,10 @@ OPTRACE "set parameters" START { }
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet D:/SOMUCHSPACE/Works/CW/CW.runs/synth_1/game_top.dcp
-  read_ip -quiet d:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Top_Bullet4/Top_Bullet4.xci
-  read_ip -quiet d:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Top_Bullet3/Top_Bullet3.xci
-  read_ip -quiet d:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Top_Bullet2/Top_Bullet2.xci
+  read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Top_Bullet5/Top_Bullet5.xci
+  read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Top_Bullet4/Top_Bullet4.xci
+  read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Top_Bullet3/Top_Bullet3.xci
+  read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Top_Bullet2/Top_Bullet2.xci
   read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Head_Bullet3/Head_Bullet3.xci
   read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/hBulletTwo/hBulletTwo.xci
   read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Head_Bullet/Head_Bullet.xci
@@ -133,7 +134,8 @@ OPTRACE "add files" START { }
   read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Head_Bullet5/Head_Bullet5.xci
   read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/title_screen/title_screen.xci
   read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/game_screen/game_screen.xci
-  read_ip -quiet d:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Top_Bullet/Top_Bullet.xci
+  read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Top_Bullet/Top_Bullet.xci
+  read_ip -quiet D:/SOMUCHSPACE/Works/CW/CW.srcs/sources_1/ip/Bar1/Bar1.xci
 OPTRACE "read constraints: implementation" START { }
   read_xdc {{D:/SOMUCHSPACE/Works/Lab 3/Lab 3.srcs/constrs_1/imports/Vivado/Nexys-4-DDR-Master.xdc}}
 OPTRACE "read constraints: implementation" END { }

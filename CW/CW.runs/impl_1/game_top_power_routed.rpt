@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Tue Jan 14 01:51:23 2025
+| Date             : Thu Jan 16 13:28:48 2025
 | Host             : DESKTOP-RS05GR8 running 64-bit major release  (build 9200)
 | Command          : report_power -file game_top_power_routed.rpt -pb game_top_power_summary_routed.pb -rpx game_top_power_routed.rpx
 | Design           : game_top
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.243        |
+| Total On-Chip Power (W)  | 0.257        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.143        |
+| Dynamic (W)              | 0.157        |
 | Device Static (W)        | 0.101        |
 | Effective TJA (C/W)      | 4.6          |
-| Max Ambient (C)          | 83.9         |
-| Junction Temperature (C) | 26.1         |
+| Max Ambient (C)          | 83.8         |
+| Junction Temperature (C) | 26.2         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,20 +52,20 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.006 |        5 |       --- |             --- |
-| Slice Logic    |     0.005 |     2751 |       --- |             --- |
-|   LUT as Logic |     0.005 |     1238 |     63400 |            1.95 |
-|   CARRY4       |    <0.001 |      146 |     15850 |            0.92 |
-|   Register     |    <0.001 |      750 |    126800 |            0.59 |
+| Clocks         |     0.007 |        5 |       --- |             --- |
+| Slice Logic    |     0.007 |     3081 |       --- |             --- |
+|   LUT as Logic |     0.006 |     1364 |     63400 |            2.15 |
+|   Register     |    <0.001 |      832 |    126800 |            0.66 |
+|   CARRY4       |    <0.001 |      152 |     15850 |            0.96 |
 |   F7/F8 Muxes  |    <0.001 |       36 |     63400 |            0.06 |
 |   BUFG         |    <0.001 |        1 |        32 |            3.13 |
-|   Others       |     0.000 |      163 |       --- |             --- |
-| Signals        |     0.004 |     2076 |       --- |             --- |
-| Block RAM      |     0.016 |     61.5 |       135 |           45.56 |
+|   Others       |     0.000 |      248 |       --- |             --- |
+| Signals        |     0.009 |     2290 |       --- |             --- |
+| Block RAM      |     0.021 |       62 |       135 |           45.93 |
 | MMCM           |     0.101 |        1 |         6 |           16.67 |
-| I/O            |     0.011 |       34 |       210 |           16.19 |
+| I/O            |     0.012 |       29 |       210 |           13.81 |
 | Static Power   |     0.101 |          |           |                 |
-| Total          |     0.243 |          |           |                 |
+| Total          |     0.257 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -75,16 +75,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.047 |       0.030 |      0.017 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.059 |       0.042 |      0.017 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.075 |       0.056 |      0.018 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.007 |       0.003 |      0.004 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.008 |       0.004 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.003 |       0.001 |      0.002 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.004 |       0.002 |      0.002 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
@@ -146,18 +146,20 @@ Table of Contents
 +----------------+-----------+
 | Name           | Power (W) |
 +----------------+-----------+
-| game_top       |     0.143 |
-|   drawcon_inst |     0.021 |
-|     g_screen   |     0.007 |
-|       U0       |     0.007 |
+| game_top       |     0.157 |
+|   drawcon_inst |     0.032 |
+|     car        |     0.003 |
+|       U0       |     0.003 |
+|     g_screen   |     0.010 |
+|       U0       |     0.010 |
 |     hBulletOne |     0.002 |
 |       U0       |     0.002 |
-|     t_screen   |     0.007 |
-|       U0       |     0.007 |
-|   head_inst    |     0.002 |
+|     t_screen   |     0.010 |
+|       U0       |     0.010 |
+|   head_inst    |     0.003 |
 |   inst         |     0.101 |
 |     inst       |     0.101 |
-|   top_inst     |     0.002 |
+|   top_inst     |     0.003 |
 |   vga_i        |     0.003 |
 +----------------+-----------+
 

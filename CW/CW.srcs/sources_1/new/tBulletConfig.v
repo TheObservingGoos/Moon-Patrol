@@ -38,9 +38,8 @@ module tBulletConfig(
     
     integer i;
     
-    wire LEDcheck;
     reg prev_button_state;  // Register to store the previous state of the button
-    assign LEDcheck = (shoot_button == 1'b1 && prev_button_state == 1'b0);
+    wire LEDcheck = (shoot_button == 1'b1 && prev_button_state == 1'b0);
 
     // Internal arrays for bullet positions
     reg [10:0] bulpos_x_array [4:0];

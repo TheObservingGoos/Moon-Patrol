@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-// Date        : Mon Jan 13 07:14:32 2025
+// Date        : Wed Jan 15 21:19:41 2025
 // Host        : DESKTOP-RS05GR8 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
 //               d:/SOMUCHSPACE/Works/CW/CW.gen/sources_1/ip/game_screen/game_screen_stub.v

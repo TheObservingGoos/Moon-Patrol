@@ -3,12 +3,12 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Tue Dec 31 19:43:39 2024
-# Process ID: 20992
-# Current directory: D:/SOMUCHSPACE/Works/Lab 6/Lab 6.runs/blk_mem_gen_0_synth_1
+# Start of session at: Wed Jan 15 18:33:35 2025
+# Process ID: 7068
+# Current directory: D:/SOMUCHSPACE/Works/CW/CW.runs/blk_mem_gen_0_synth_1
 # Command line: vivado.exe -log blk_mem_gen_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source blk_mem_gen_0.tcl
-# Log file: D:/SOMUCHSPACE/Works/Lab 6/Lab 6.runs/blk_mem_gen_0_synth_1/blk_mem_gen_0.vds
-# Journal file: D:/SOMUCHSPACE/Works/Lab 6/Lab 6.runs/blk_mem_gen_0_synth_1\vivado.jou
+# Log file: D:/SOMUCHSPACE/Works/CW/CW.runs/blk_mem_gen_0_synth_1/blk_mem_gen_0.vds
+# Journal file: D:/SOMUCHSPACE/Works/CW/CW.runs/blk_mem_gen_0_synth_1\vivado.jou
 # Running On        :DESKTOP-RS05GR8
 # Platform          :Windows Server 2016 or Windows 10
 # Operating System  :19045
@@ -19,6 +19,6 @@
 # Host memory       :16556 MB
 # Swap memory       :25769 MB
 # Total Virtual     :42326 MB
-# Available Virtual :19238 MB
+# Available Virtual :24174 MB
 #-----------------------------------------------------------
 source blk_mem_gen_0.tcl -notrace

@@ -24,15 +24,14 @@ module Vert_Movement(
     input clk,              // System clock
     input rst,              // Reset
     input jmp_btn,           // Jump button
-    output reg [10:0] pos_y,    // Y-coordinate of the sprite
-    output reg [1:0] s,
-    output reg outLED
+    output reg [10:0] pos_y    // Y-coordinate of the sprite
     );
     
     // Parameters
     parameter GROUND_LEVEL = 11'd810;
 
     // FSM states
+    reg [1:0] s;
     reg [1:0] ns;
     
     reg [10:0] velocity;
@@ -43,10 +42,8 @@ module Vert_Movement(
     always @(posedge clk) begin
         if (!rst) begin
             s <= 2'b00;
-            outLED <= 0;
         end else begin
             s <= ns;
-            outLED <= (ns == 2'b01 || ns == 2'b10);
         end
     end
 
